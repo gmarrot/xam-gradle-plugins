@@ -36,6 +36,7 @@ class NunitPlugin implements Plugin<Project> {
                 def testTask = task("test", description : "Run nunit test", group : Groups.VERIFICATION, type : RunNUnitConsoleTask) {
                     projects = nunit.projects
                     format = nunit.format
+                    transformXsltFilePath = nunit.transformFile ? project.relativePath(nunit.transformFile) : null
                     assemblies = nunit.assemblies
                 }
 

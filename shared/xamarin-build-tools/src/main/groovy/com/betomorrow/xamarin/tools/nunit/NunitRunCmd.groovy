@@ -11,10 +11,14 @@ class NunitRunCmd implements CommandRunner.Cmd {
     String format
     String resultFilename = 'TestResult.xml'
 
-    NunitRunCmd(String nunitConsolePath, List<String> assemblies, String format) {
+    String transformXsltPath
+    String transformedResultFilename = 'TestResult-Transformed.xml'
+
+    NunitRunCmd(String nunitConsolePath, List<String> assemblies, String format, String transformXsltPath) {
         this.nunitConsolePath = nunitConsolePath
         this.assemblies = assemblies
         this.format = format
+        this.transformXsltPath = transformXsltPath
     }
 
     @Override
@@ -27,6 +31,10 @@ class NunitRunCmd implements CommandRunner.Cmd {
 
         if (format) {
             cmd.add("--result:${resultFilename};format=${format}")
+        }
+
+        if (transformXsltPath) {
+            cmd.add("--result:${transformedResultFilename};transform=${transformXsltPath}")
         }
 
         return cmd

@@ -37,7 +37,7 @@ class RunNUnitConsoleTaskTest extends Specification {
         task.run()
 
         then:
-        1 * runner.run([Paths.get('CrossLib.Test/bin/Release/CrossLib.Test.dll').toString()], null)
+        1 * runner.run([Paths.get('CrossLib.Test/bin/Release/CrossLib.Test.dll').toString()], null, null)
     }
 
     def "run should use given assemblies"() {
@@ -53,7 +53,7 @@ class RunNUnitConsoleTaskTest extends Specification {
         task.run()
 
         then:
-        1 * runner.run(['CrossLib.Test/bin/Release/CrossLib.Test.dll'], null)
+        1 * runner.run(['CrossLib.Test/bin/Release/CrossLib.Test.dll'], null, null)
     }
 
     def "run should use TestResults format"() {
@@ -70,6 +70,6 @@ class RunNUnitConsoleTaskTest extends Specification {
         task.run()
 
         then:
-        1 * runner.run(_, "nunit2")
+        1 * runner.run(_, "nunit2", null)
     }
 }

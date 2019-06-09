@@ -23,5 +23,6 @@ version = "1.0.0"
 nunit {
     projects = "CrossLib.Test"
     format = "nunit2"
+    transform = "nunit3-junit.xslt"
 }
 

@@ -25,6 +25,9 @@ class RunNUnitConsoleTask extends DefaultTask {
     @Input @Optional
     String format
 
+    @Input @Optional
+    String transformXsltFilePath
+
     @TaskAction
     void run() {
         def targets = []
@@ -42,7 +45,7 @@ class RunNUnitConsoleTask extends DefaultTask {
             }
         }
 
-        def result = nUnitRunner.run(targets, format)
+        def result = nUnitRunner.run(targets, format, transformXsltFilePath)
         if (result > 0) {
             throw new GradleException("Test failures")
         }
